@@ -2,7 +2,7 @@
 # https://github.com/hhcordero/docker-jmeter-server/blob/master/Dockerfile
 FROM alpine:latest
 
-MAINTAINER casep <casep@fedoraproject.org>
+LABEL maintainer="Carlos 'casep' Sepulveda <casep@fedoraproject.org>"
 
 ARG JMETER_VERSION="5.5"
 ENV JMETER_HOME /opt/apache-jmeter-${JMETER_VERSION}
@@ -18,15 +18,16 @@ RUN adduser -D -u $UID ${JMETER_USER}
 
 # Install extra packages
 # Set TimeZone, See: https://github.com/gliderlabs/docker-alpine/issues/136#issuecomment-612751142
-ARG TZ="Europe/Amsterdam"
+ARG TZ="Europe/London"
 ENV TZ ${TZ}
-RUN apk upgrade --update \
+RUN	apk upgrade --update \
 	&& apk add ca-certificates \
 	&& update-ca-certificates \
 	&& apk add --update openjdk17-jre tzdata curl unzip bash \
 	&& apk add --no-cache nss msttcorefonts-installer fontconfig \
 	&& update-ms-fonts \
 	&& rm -rf /var/cache/apk/* \
+	&& cp /usr/share/zoneinfo/$TZ /etc/localtime \
 	&& mkdir -p /tmp/dependencies  \
 	&& curl -L --silent ${JMETER_DOWNLOAD_URL} >  /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz  \
 	&& mkdir -p /opt  \
