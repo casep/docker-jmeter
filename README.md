@@ -7,48 +7,22 @@
 Docker image for [Apache JMeter](http://jmeter.apache.org).
 This Docker image can be run as the ``jmeter`` command.
 Find Images of this repo on [Docker Hub](https://hub.docker.com/r/justb4/jmeter).
-Starting version 5.4 Docker builds/pushes
+Starting version 5.5 Docker builds/pushes
 are [executed via GitHub Workflows](.github/workflows/docker.yml).
-
-## Donate
-With **over 10 Million Pulls from DockerHub**, this Docker Image is increasingly popular.
-To support its active maintainance consider making a donation, for example via PayPal:
-
-[![Donate with PayPal](https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png)](https://www.paypal.com/biz/fund?id=3QZW9SNGCWBM4)
-
-
-## Security Patches
-As you may have seen in the news, a new zero-day exploit has been reported against the
-popular Log4J2 library which can allow an attacker to remotely execute code.
-The vulnerability has been reported with [CVE-2021-44228](https://nvd.nist.gov/vuln/detail/CVE-2021-44228)
-against the log4j-core jar and has been fixed in Log4J v2.16.0.
-
-JMeter, at least in versions 5 and later uses the vulnerable Log4J versions.
-The good news though is that the vulnerability applies only to remotely accessible Java web-services.
-JMeter is a commandline/GUI tool one runs internally. Still it is good practice to
-patch this problem.
-
-**JMeter has been updated to 5.4.2 for security CVE-2021-45046 & CVE-2021-45046**.
-
-https://jmeter.apache.org/changes.html#Non-functional%20changes
-
-The update to 5.4.2 includes the updated Apache log4j2 to 2.16.0 (from 2.13.3), thanks for PR #51!
 
 ## Building
 
 With the script [build.sh](build.sh) the Docker image can be build
 from the [Dockerfile](Dockerfile) but this is not really necessary as
 you may use your own ``docker build`` commandline. Or better: use one
-of the pre-built Images from [Docker Hub](https://hub.docker.com/r/justb4/jmeter).
-
-See end of this doc for more detailed build/run/test instructions (thanks to @wilsonmar!)
+of the pre-built Images from [Docker Hub](https://hub.docker.com/r/casep/docker-jmeter).
 
 ### Build Options
 
 Build arguments (see [build.sh](build.sh)) with default values if not passed to build:
 
-- **JMETER_VERSION** - JMeter version, default ``5.4``. Use as env variable to build with another version: `export JMETER_VERSION=5.4`
-- **IMAGE_TIMEZONE** - timezone of Docker image, default ``"Europe/Amsterdam"``. Use as env variable to build with another timezone: `export IMAGE_TIMEZONE="Europe/Berlin"`
+- **JMETER_VERSION** - JMeter version, default ``5.5``. Use as env variable to build with another version: `export JMETER_VERSION=5.5`
+- **IMAGE_TIMEZONE** - timezone of Docker image, default ``"Europe/London"``. Use as env variable to build with another timezone: `export IMAGE_TIMEZONE="Europe/Berlin"`
 
 ## Running
 
@@ -106,7 +80,7 @@ Contribution by @wilsonmar
 1. In a Terminal/Command session, install Git, navigate/make a folder, then:
 
    ```
-   git clone https://github.com/justb4/docker-jmeter.git
+   git clone https://github.com/casep/docker-jmeter.git
    cd docker-jmeter
    ```
 
