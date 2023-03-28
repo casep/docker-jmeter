@@ -28,16 +28,8 @@ echo "JVM_ARGS=${JVM_ARGS}"
 echo "jmeter args=$@"
 
 # Keep entrypoint simple: we must pass the standard JMeter arguments
-EXTRA_ARGS="-Dawt.useSystemAAFontSettings=lcd -Dlog4j2.formatMsgNoLookups=true -JAWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -JAWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -JAWS_SESSION_TOKEN=$AWS_SESSION_TOKEN"
+EXTRA_ARGS="-Jjmeter.laf=System -Dawt.useSystemAAFontSettings=lcd -Dlog4j2.formatMsgNoLookups=true -JAWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -JAWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -JAWS_SESSION_TOKEN=$AWS_SESSION_TOKEN"
 echo "jmeter ALL ARGS=${EXTRA_ARGS} $@"
 jmeter ${EXTRA_ARGS} $@
 
 echo "END Running Jmeter on `date`"
-
-#     -n \
-#    -t "/tests/${TEST_DIR}/${TEST_PLAN}.jmx" \
-#    -l "/tests/${TEST_DIR}/${TEST_PLAN}.jtl"
-# exec tail -f jmeter.log
-#    -D "java.rmi.server.hostname=${IP}" \
-#    -D "client.rmi.localport=${RMI_PORT}" \
-#  -R $REMOTE_HOSTS
